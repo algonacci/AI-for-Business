@@ -1,8 +1,7 @@
-from flask import Blueprint, render_template, request
 import pandas as pd
+from flask import Blueprint, render_template, request
 from mlxtend.frequent_patterns import apriori, association_rules
 from mlxtend.preprocessing import TransactionEncoder
-
 
 bp = Blueprint("market_basket_analysis", __name__)
 te = TransactionEncoder()

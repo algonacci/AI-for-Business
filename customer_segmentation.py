@@ -1,11 +1,9 @@
 import pickle
-from flask import Blueprint, render_template, request
-import pandas as pd
-from sklearn.preprocessing import StandardScaler
-from sklearn.preprocessing import LabelEncoder
-from kmodes.kmodes import KModes
-from kmodes.kprototypes import KPrototypes
 
+import pandas as pd
+from flask import Blueprint, render_template, request
+from kmodes.kprototypes import KPrototypes
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 
 bp = Blueprint("customer_segmentation", __name__)
 
