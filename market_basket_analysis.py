@@ -12,14 +12,14 @@ def market_basket_analysis():
     if request.method == "POST":
         uploaded_file = request.files["file"]
         if uploaded_file.filename != "":
-            df = pd.read_csv(uploaded_file)
-            df = df[(df['Nama Produk'] != 'Extra Packing Bubble Wrap')
-                    & (df['Nama Produk'] != 'Extra Packing Bubblewrap')]
+            df = pd.read_csv(uploaded_file, sep="\t")
+            # df = df[(df['Nama Produk'] != 'Extra Packing Bubble Wrap')
+            #         & (df['Nama Produk'] != 'Extra Packing Bubblewrap')]
 
             print(df)
 
-            te_ary = te.fit(df.groupby('No. Pesanan')['Nama Produk'].apply(
-                list)).transform(df.groupby('No. Pesanan')['Nama Produk'].apply(list))
+            te_ary = te.fit(df.groupby('Kode Transaksi')['Nama Barang'].apply(
+                list)).transform(df.groupby('Kode Transaksi')['Nama Barang'].apply(list))
             df_encoded = pd.DataFrame(te_ary, columns=te.columns_)
 
             frequent_itemsets = apriori(
